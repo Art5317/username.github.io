@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>テスト公開ページ（認証付き）</title>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container" style="padding: 80px 0;">
+    <section class="card" style="text-align: center; max-width: 760px; margin: 60px auto;">
+      <h1>テスト閲覧ページ</h1>
+      <p>現在は一般公開していません。管理者から共有された<strong>テスト用パスコード</strong>で閲覧できます。</p>
+
+      <form id="gateForm" style="margin-top: 18px;">
+        <label for="passcode">パスコード</label><br />
+        <input id="passcode" type="password" autocomplete="off" style="margin-top:8px;padding:10px;min-width:260px;" />
+        <button type="submit" class="btn" style="margin-left:8px;">入る</button>
+      </form>
+
+      <p id="error" style="color:#b00020; display:none; margin-top: 12px;">パスコードが違います。</p>
+
+      <div id="privateContent" style="display:none; margin-top: 24px; text-align:left;">
+        <h2>閲覧ありがとうございます</h2>
+        <p>このページはテスト閲覧者向けです。公開準備中のため内容は変更される場合があります。</p>
+        <ul>
+          <li>学校概要の確認</li>
+          <li>入学情報の確認</li>
+          <li>公開前の文言チェック</li>
+        </ul>
+      </div>
+
+      <p class="hint" style="text-align:left; margin-top:20px;">※パスコードは管理者にお問い合わせください。</p>
+    </section>
+  </main>
+
+  <script>
+    const PASSCODE = "yokosuka-test"; // 必要に応じて変更
+    const form = document.getElementById("gateForm");
+    const passInput = document.getElementById("passcode");
+    const error = document.getElementById("error");
+    const privateContent = document.getElementById("privateContent");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (passInput.value === PASSCODE) {
+        error.style.display = "none";
+        privateContent.style.display = "block";
+      } else {
+        privateContent.style.display = "none";
+        error.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
